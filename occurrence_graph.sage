@@ -21,32 +21,40 @@ def occurrence_graph(w, p):
 # show(og)
 
 
+#~ attach("occurrence_graph.sage")
+
 
 # Counting permutations with graphs that are connected
 # with information about running times
 
-N = 7
+N = 9
 p = [1,2]
 L = []
 print 'n count\t', 'time'
 print '- -----\t', '----'
 for n in range(1,N+1):
+#~ for n in [4]:
     c = 0
     for perm in Permutations(n):
-        og = occurrence_graph(perm, p)
-        #~ if og.is_bipartite(): # Hit on OEIS
-        #~ if og.is_chordal(): # Hit on OEIS
-        #~ if og.is_clique(): # Hit on OEIS
-        #~ if og.is_connected():
-        #~ if og.is_forest(): # Hit on OEIS
-        #~ if og.is_gallai_tree():
-        #~ if og.is_line_graph(): # Always true? What IS a line graph?
-        #~ if og.is_planar():
-        #~ if og.is_perfect():
-        #~ if og.is_regular():
-        if og.is_tree(): # Square numbers?
-        #~ if og.is_eulerian():
-            c += 1
+        if perm[0]==n or perm[-1]==1:
+            continue;
+        else:
+            og = occurrence_graph(perm, p)
+            #~ if og.is_bipartite(): # Hit on OEIS
+            #~ if og.is_chordal(): # Hit on OEIS
+            #~ if og.is_clique(): # Hit on OEIS
+            if og.is_connected():
+            #~ if og.is_gallai_tree():
+            #~ if og.is_line_graph(): # Always true? What IS a line graph?
+            #~ if og.is_planar():
+            #~ if og.is_perfect():
+            #~ if og.is_regular():
+            #~ if og.is_forest(): # Hit on OEIS
+            #~ if og.is_tree(): # Square numbers?
+            #~ if og.is_eulerian():
+                #~ print og
+                #~ print perm
+                c += 1
     from datetime import datetime
     print n, c, '\t', datetime.now().time()
     L.append(c)
